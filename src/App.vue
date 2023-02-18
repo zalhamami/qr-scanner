@@ -26,7 +26,7 @@ import HelloWorld from "./components/HelloWorld.vue";
   <RouterView />
 </template>
 
-<style scoped>
+<style>
 header {
   margin: 64px 0;
   line-height: 1.5;
