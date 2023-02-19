@@ -17,9 +17,9 @@ let guest = reactive({
   },
 });
 
-const onScanSuccess = (decodedText: string, decodedResult: any) => {
-  result = decodedResult;
-  getGuestInfo()
+const onScanSuccess = (decodedText: string) => {
+  result = JSON.parse(decodedText);
+  getGuestInfo();
 }
 
 const onScanFailure = (error: any) => {
@@ -47,6 +47,11 @@ const getGuestInfo = async () => {
   }
 }
 
+const resetGuest = () => {
+  guest.name = null
+  guest.category.name = null
+}
+
 onMounted(() => {
   const html5QrcodeScanner = new Html5QrcodeScanner(
   "reader",
@@ -69,12 +74,30 @@ onMounted(() => {
         <h3 style="font-weight: 600;">
           Guest Information
         </h3>
-        <p>
-          <strong>Name:</strong> {{ guest.name }}
-        </p>
-        <p v-if="guest.category.name">
-          <strong>Category:</strong> {{ guest.category.name }}
-        </p>
+        <div style="margin: 1rem 0;">
+          <p class="font-semibold">
+            Name:
+          </p>
+          <p>
+            {{ guest.name }}
+          </p>
+        </div>
+        <div v-if="guest.category.name" style="margin: 1rem 0;">
+          <p class="font-semibold">
+            Category:
+          </p>
+          <p>
+            {{ guest.category.name }}
+          </p>
+        </div>
+      </div>
+      <div align="center">
+        <button
+          style="margin: 1rem auto"
+          @click="resetGuest"
+        >
+          Back to scanner
+        </button>
       </div>
     </div>
     <div v-if="!guest.name" id="reader"></div>
