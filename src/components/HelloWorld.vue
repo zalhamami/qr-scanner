@@ -6,12 +6,10 @@ defineProps<{
 
 <template>
   <div class="greetings">
-    <h1 class="green text-gradient text-center">
-      {{ msg }}
-    </h1>
-    <p class="text-center">
+    <h1 class="green">{{ msg }}</h1>
+    <h3>
       Scan the QR Code here
-    </p>
+    </h3>
   </div>
 </template>
 
